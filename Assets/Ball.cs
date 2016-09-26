@@ -28,7 +28,7 @@ public class Ball : MonoBehaviour
         Fire f = GameObject.Find("fire").GetComponent<Fire>();
 
         float x = 0;
-        if (c.gameObject.name == "WallTop" || c.gameObject.name == "WallLeft" || c.gameObject.name == "WallBottom" || c.gameObject.name == "WallRight")
+        if (c.gameObject.name == "Ellipse")
         {
             hs.saveHighScore();
             SceneManager.LoadScene(1);
