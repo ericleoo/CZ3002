@@ -29,7 +29,7 @@ public class VirtualJoystick : MonoBehaviour , IDragHandler, IPointerUpHandler, 
 			inputVector = new Vector3 (pos.x * 2 + 1, 0, pos.y * 2 - 1);
 			inputVector = (inputVector.magnitude > 1.0f) ? inputVector.normalized : inputVector;
 
-			Vector3 joystickDir = bgImg.rectTransform.anchoredPosition - joystickImg.rectTransform.anchoredPosition;
+			Vector3 joystickDir = new Vector2(0,0) - joystickImg.rectTransform.anchoredPosition;
 			float angle = Mathf.Atan2(joystickDir.y, joystickDir.x) * Mathf.Rad2Deg;
 
 			// Move Joystick IMG
