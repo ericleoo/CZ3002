@@ -28,13 +28,16 @@ public class Ball : MonoBehaviour
         Fire f = GameObject.Find("fire").GetComponent<Fire>();
 
         float x = 0;
-        if (c.gameObject.name == "Ellipse")
+        if (c.gameObject.name == "WallTop" ||
+            c.gameObject.name == "WallLeft" ||
+            c.gameObject.name == "WallRight"||
+            c.gameObject.name == "WallBottom")
         {
             hs.saveHighScore();
             SceneManager.LoadScene(1);
             hs.loadHighScore();
         }
-        else if (c.gameObject.name == "RacketLeft")
+        else if (c.gameObject.name == "LeftRacket")
         {
             st.incScore();
             hs.setHighScore(st.getScore());
@@ -46,7 +49,7 @@ public class Ball : MonoBehaviour
                 f.setActive(true);
             }
         }
-        else if (c.gameObject.name == "RacketRight")
+        else if (c.gameObject.name == "RightRacket")
         {
             st.incScore();
             hs.setHighScore(st.getScore());
