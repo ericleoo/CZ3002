@@ -29,8 +29,7 @@ public class VirtualJoystickLeft : MonoBehaviour, IDragHandler, IPointerUpHandle
             pos.x = (pos.x / bgImg.rectTransform.sizeDelta.x);
             pos.y = (pos.y / bgImg.rectTransform.sizeDelta.y);
 
-            inputVector = new Vector3(pos.x * 2 + 1, 0, pos.y * 2 - 1);
-            inputVector = (inputVector.magnitude > 1.0f) ? inputVector.normalized : inputVector;
+            inputVector = new Vector3(pos.x * 2 + 1, 0, pos.y * 2 - 1).normalized;
 
             Vector3 joystickDir = new Vector2(0, 0) - joystickImg.rectTransform.anchoredPosition;
             float angle = Mathf.Atan2(joystickDir.y, joystickDir.x) * Mathf.Rad2Deg;
@@ -54,8 +53,6 @@ public class VirtualJoystickLeft : MonoBehaviour, IDragHandler, IPointerUpHandle
             {
                 Vector3 paddleDir = paddle.transform.position - center.transform.position;
                 float angle2 = Mathf.Atan2(paddleDir.y, paddleDir.x) * Mathf.Rad2Deg;
-
-                Debug.Log(joystickDir);
                 //paddle.transform.rotation = Quaternion.LookRotation (joystickDir);
                 ///paddle.transform.RotateAround(center.transform.position, Vector3.forward, 180 + (angle - angle2));
 
@@ -66,7 +63,8 @@ public class VirtualJoystickLeft : MonoBehaviour, IDragHandler, IPointerUpHandle
 
                 // Multiplier of x position increases the distance from paddle to center while paddle approaches to center of left/right side of screen
                 // 		to make sure that the paddle moves in an elliptic path 
-                paddle.transform.position = new Vector3((float)(paddleCircPos.x + (float)((Mathf.Abs(paddleCircPos.x) - 100) * 0.8)), paddle.transform.position.y);
+                Debug.Log((paddle.transform.position.y - 100.0f) * 0.6f + 100.0f);
+                paddle.transform.position = new Vector3((float)(paddleCircPos.x + (float)((Mathf.Abs(paddleCircPos.x) - 100) * 0.7)), paddle.transform.position.y);
             }
         }
     }
