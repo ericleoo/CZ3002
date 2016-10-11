@@ -1,0 +1,17 @@
+/Users/Kurni/savagep/Temp/bin/Debug/Assembly-CSharp.dll.mdb
+/Users/Kurni/savagep/Temp/bin/Debug/Assembly-CSharp.dll
+/Users/Kurni/savagep/obj/Debug/Assembly-CSharp.dll
+/Users/Kurni/savagep/obj/Debug/Assembly-CSharp.dll.mdb
+/Users/Kurni/savagep/Temp/bin/Debug/UnityEngine.dll
+/Users/Kurni/savagep/Temp/bin/Debug/UnityEditor.dll
+/Users/Kurni/savagep/Temp/bin/Debug/UnityEngine.Networking.dll
+/Users/Kurni/savagep/Temp/bin/Debug/UnityEngine.UI.dll
+/Users/Kurni/savagep/Temp/bin/Debug/Mono.Cecil.dll
+/Users/Kurni/savagep/Temp/bin/Debug/Unity.SerializationLogic.dll
+/Users/Kurni/savagep/Temp/bin/Debug/Unity.DataContract.dll
+/Users/Kurni/savagep/Temp/bin/Debug/ICSharpCode.NRefactory.dll
+/Users/Kurni/savagep/Temp/bin/Debug/Unity.UNetWeaver.dll
+/Users/Kurni/savagep/Temp/bin/Debug/Unity.UNetWeaver.dll.mdb
+/Users/Kurni/savagep/Temp/bin/Debug/Unity.CecilTools.dll
+/Users/Kurni/savagep/Temp/bin/Debug/Mono.Cecil.Pdb.dll
+/Users/Kurni/savagep/Temp/bin/Debug/Mono.Cecil.Mdb.dll
