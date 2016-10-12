@@ -49,8 +49,6 @@ public class VirtualJoystickLeft : MonoBehaviour, IDragHandler, IPointerUpHandle
                 }
             }
 
-            Debug.Log(joystickImg.rectTransform.anchoredPosition);
-
             if (inputVector.magnitude >= 1.0f)
             {
                 Vector3 paddleDir = paddle.transform.position - center.transform.position;

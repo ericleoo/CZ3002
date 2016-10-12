@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class Ball : MonoBehaviour
 {
-
-    public float speed = 25;
-    void Start()
+    public GameObject gameOverWindow;
+    public Text gameOverText;
+    public float speed = 0;
+    public void GameStart()
     {
         Rigidbody2D ball = GetComponent<Rigidbody2D>();
-        transform.position = new Vector2(80,100);
+        transform.position = new Vector2(100,100);
         GetComponent<Rigidbody2D>().velocity = speed * Vector2.right;
     }
 
@@ -23,16 +25,22 @@ public class Ball : MonoBehaviour
     {
         Rigidbody2D ball = GetComponent<Rigidbody2D>();
         
-        ScoreText st = GameObject.Find("Text (1)").GetComponent<ScoreText>();
-        HighScore hs = GameObject.Find("Text (2)").GetComponent<HighScore>();
+        ScoreText st = GameObject.Find("Score").GetComponent<ScoreText>();
+        HighScore hs = GameObject.Find("HighScore").GetComponent<HighScore>();
         Fire f = GameObject.Find("fire").GetComponent<Fire>();
 
         float x = 0;
-        if (c.gameObject.name == "Ellipse")
+        if (c.gameObject.name == "WallUp" ||
+            c.gameObject.name == "WallLeft" ||
+            c.gameObject.name == "WallDown" ||
+            c.gameObject.name == "WallRight" )
         {
-            hs.saveHighScore();
-            SceneManager.LoadScene(1);
-            hs.loadHighScore();
+            speed = 0;
+            GameStart();
+            GameOver();
+            //speed = 30;
+            //GameStart();
+            return;
         }
         else if (c.gameObject.name == "LeftRacket")
         {
@@ -69,4 +77,24 @@ public class Ball : MonoBehaviour
 
         ball.velocity = speed * new Vector2(x, hitFactor(ball.position, c.transform.position, c.collider.bounds.size.y)).normalized;
     }
+
+    void GameOver()
+    {
+        transform.position = new Vector2(100, 100);
+        speed = 0;
+        gameOverWindow.active = true;
+        ScoreText st = GameObject.Find("Score").GetComponent<ScoreText>();
+        HighScore hs = GameObject.Find("HighScore").GetComponent<HighScore>();
+        gameOverText.text = "Game Over!\nYour Score: " + st.getScore() + "\nHigh Score: " + hs.getHighScore();
+        hs.saveHighScore();
+        //SceneManager.LoadScene(1);
+        hs.loadHighScore();
+        st.resetScore();
+    }
+    void Update()
+    {
+        Debug.Log(speed);
+    }
 }
+
+
