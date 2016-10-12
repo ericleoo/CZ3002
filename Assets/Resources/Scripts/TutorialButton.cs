@@ -17,14 +17,13 @@ public class TutorialButton : MonoBehaviour {
         {
             ballScript = ballObject.GetComponent<Ball>();
             ballScript.speed = 30;
-            ballScript.GameStart();
+            ballScript.Start();
         }
 
         if (despawnObject.name == "GameOverWindow")
         {
             ballScript = ballObject.GetComponent<Ball>();
-            ballScript.speed = 30;
-            ballScript.GameStart();
+            ballScript.Start();
         }
 	}
 	
