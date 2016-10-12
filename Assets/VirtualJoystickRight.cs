@@ -18,7 +18,7 @@ public class VirtualJoystickRight : MonoBehaviour , IDragHandler, IPointerUpHand
 		bgImg = GetComponent<Image> ();
 		joystickImg = transform.GetChild (0).GetComponent<Image> ();
         paddleCircPos = paddle.transform.position;
-        paddle.transform.position = new Vector3((float)(paddleCircPos.x + (float)((Mathf.Abs(paddleCircPos.x) - 100) * 0.8)), paddle.transform.position.y);
+        paddle.transform.position = new Vector3((float)(paddleCircPos.x + (float)((Mathf.Abs(paddleCircPos.x) - 100) * 0.7)), paddle.transform.position.y);
     }
 
 	public virtual void OnDrag(PointerEventData ped)
@@ -41,15 +41,17 @@ public class VirtualJoystickRight : MonoBehaviour , IDragHandler, IPointerUpHand
 
             if (joystickImg.rectTransform.anchoredPosition.x < 0)
             {
-                if ((joystickImg.rectTransform.anchoredPosition.y > -75 & joystickImg.rectTransform.anchoredPosition.y <= 0))
+                if ((joystickImg.rectTransform.anchoredPosition.y > -52 & joystickImg.rectTransform.anchoredPosition.y <= 0))
                 {
-                    joystickImg.rectTransform.anchoredPosition = new Vector3(0, -75);
+                    joystickImg.rectTransform.anchoredPosition = new Vector3(0, -52);
                 }
-                else if ((joystickImg.rectTransform.anchoredPosition.y > 0 & joystickImg.rectTransform.anchoredPosition.y < 75))
+                else if ((joystickImg.rectTransform.anchoredPosition.y > 0 & joystickImg.rectTransform.anchoredPosition.y < 52))
                 {
-                    joystickImg.rectTransform.anchoredPosition = new Vector3(0, 75);
+                    joystickImg.rectTransform.anchoredPosition = new Vector3(0, 52);
                 }
             }
+
+            Debug.Log(joystickImg.rectTransform.anchoredPosition);
 
             if (inputVector.magnitude >= 1.0f) 
 			{
@@ -67,7 +69,7 @@ public class VirtualJoystickRight : MonoBehaviour , IDragHandler, IPointerUpHand
 
                 // Multiplier of x position increases the distance from paddle to center while paddle approaches to center of left/right side of screen
                 // 		to make sure that the paddle moves in an elliptic path 
-                paddle.transform.position = new Vector3((float)(paddleCircPos.x + (float)((paddleCircPos.x - 100) * 0.8)), paddle.transform.position.y);
+                paddle.transform.position = new Vector3((float)(paddleCircPos.x + (float)((paddleCircPos.x - 100) * 0.7)), paddle.transform.position.y);
             }
 		}
 	}
