@@ -45,17 +45,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Ball.cs" />
-     <Compile Include="Assets\Ellipse.cs" />
-     <Compile Include="Assets\Fire.cs" />
-     <Compile Include="Assets\GameController.cs" />
-     <Compile Include="Assets\HighScore.cs" />
-     <Compile Include="Assets\PlayButton.cs" />
-     <Compile Include="Assets\RacketLeft.cs" />
-     <Compile Include="Assets\RacketRight.cs" />
-     <Compile Include="Assets\ScoreText.cs" />
-     <Compile Include="Assets\VirtualJoystickLeft.cs" />
-     <Compile Include="Assets\VirtualJoystickRight.cs" />
+     <Compile Include="Assets\Resources\Scripts\Ball.cs" />
+     <Compile Include="Assets\Resources\Scripts\Ellipse.cs" />
+     <Compile Include="Assets\Resources\Scripts\Fire.cs" />
+     <Compile Include="Assets\Resources\Scripts\GameController.cs" />
+     <Compile Include="Assets\Resources\Scripts\GameOverText.cs" />
+     <Compile Include="Assets\Resources\Scripts\HighScore.cs" />
+     <Compile Include="Assets\Resources\Scripts\Multiply.cs" />
+     <Compile Include="Assets\Resources\Scripts\PlayButton.cs" />
+     <Compile Include="Assets\Resources\Scripts\RacketLeft.cs" />
+     <Compile Include="Assets\Resources\Scripts\RacketRight.cs" />
+     <Compile Include="Assets\Resources\Scripts\ScoreText.cs" />
+     <Compile Include="Assets\Resources\Scripts\TutorialButton.cs" />
+     <Compile Include="Assets\Resources\Scripts\VirtualJoystickLeft.cs" />
+     <Compile Include="Assets\Resources\Scripts\VirtualJoystickRight.cs" />
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
