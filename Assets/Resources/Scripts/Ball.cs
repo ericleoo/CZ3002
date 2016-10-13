@@ -7,6 +7,7 @@ public class Ball : MonoBehaviour
 {
     public GameObject gameOverWindow;
     public Text gameOverText;
+	public float initialSpeed = 30;
     public float speed = 30;
     //public float timeToWait = 2;
     public static int numberOfBalls = 1;
@@ -39,7 +40,10 @@ public class Ball : MonoBehaviour
 
         float x = 0;
 
-        if (c.gameObject.name == "Ellipse")
+        if (c.gameObject.name == "WallLeft" ||
+			c.gameObject.name == "WallRight" ||
+			c.gameObject.name == "WallUp" ||
+			c.gameObject.name == "WallDown")
         {
             if (numberOfBalls == 1)
             {
@@ -70,8 +74,8 @@ public class Ball : MonoBehaviour
         else if(c.gameObject.name == "fire")
         {
             f.setActive(false);
-            speed *= 2.0f;
-            ball.velocity = 2.0f * ball.velocity;
+            speed *= 1.5f;
+            ball.velocity = 1.5f * ball.velocity;
             return;
         }
         else if (c.gameObject.name == "Multiply")
@@ -142,6 +146,7 @@ public class Ball : MonoBehaviour
         ScoreText st = GameObject.Find("Score").GetComponent<ScoreText>();
         HighScore hs = GameObject.Find("HighScore").GetComponent<HighScore>();
         gameOverText.text = "Game Over!\nYour Score: " + st.getScore() + "\nHigh Score: " + hs.getHighScore();
+		speed = initialSpeed;
         hs.saveHighScore();
         //SceneManager.LoadScene(1);
         hs.loadHighScore();
