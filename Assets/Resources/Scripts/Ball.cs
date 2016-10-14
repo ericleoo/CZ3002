@@ -5,23 +5,31 @@ using UnityEngine.SceneManagement;
 
 public class Ball : MonoBehaviour
 {
-    public GameObject gameOverWindow;
-    public Text gameOverText;
 	public float initialSpeed = 30;
     public float speed = 30;
     //public float timeToWait = 2;
     public static int numberOfBalls = 1;
     public void Start()
     {
-        // Only the first ball gets the following setup
-        if (numberOfBalls == 1)
-        {
-            Time.timeScale = 1;
-            Rigidbody2D ball = GetComponent<Rigidbody2D>();
-            transform.position = new Vector2(100, 100);
-            ball.velocity = speed * Vector2.right;
-        }
+		GameOverVisibility gameOver = GameObject.Find ("GameOver").GetComponent<GameOverVisibility> ();
+		gameOver.showWindow (false);
+
+		//While in tutorial, the game does not progress
+		if (PlayerPrefs.GetInt ("tutorial") == 1)
+			Time.timeScale = 0;
+		else {
+			// Only the first ball gets the following setup
+			if (numberOfBalls == 1)
+	        {
+				Time.timeScale = 1;
+				Rigidbody2D ball = GetComponent<Rigidbody2D>();
+	            transform.position = new Vector2(100, 100);
+	            ball.velocity = speed * Vector2.right;
+	        }
+		}
+
     }
+
 
     float hitFactor(Vector2 ballPos, Vector2 racketPos, float racketHeight)
     {
@@ -141,20 +149,24 @@ public class Ball : MonoBehaviour
 
     void GameOver()
     {
-        Time.timeScale = 0;
-        gameOverWindow.active = true;
-        ScoreText st = GameObject.Find("Score").GetComponent<ScoreText>();
-        HighScore hs = GameObject.Find("HighScore").GetComponent<HighScore>();
-        gameOverText.text = "Game Over!\nYour Score: " + st.getScore() + "\nHigh Score: " + hs.getHighScore();
+		Time.timeScale = 0;
+		GameOverVisibility gameOver = GameObject.Find ("GameOver").GetComponent<GameOverVisibility> ();
+	
+		// Show the game over window. Pass the scores through PlayerPrefs.
+		ScoreText st = GameObject.Find("Score").GetComponent<ScoreText>();
+		HighScore hs = GameObject.Find("HighScore").GetComponent<HighScore>();
+
+		gameOver.showWindow (true);
 		speed = initialSpeed;
-        hs.saveHighScore();
         //SceneManager.LoadScene(1);
-        hs.loadHighScore();
-        st.resetScore();
+		hs.saveHighScore();
+		st.resetScore();
+		hs.loadHighScore();
+        
     }
     void Update()
     {
-        Debug.Log(speed);
+        //Debug.Log(speed);
     }
 }
 
