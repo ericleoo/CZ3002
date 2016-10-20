@@ -25,7 +25,7 @@ public class GameOverVisibility : MonoBehaviour {
 	}*/
 
 	public void showWindow(bool status){
-		gameOverWindow.SetActive (status);
+		if(gameOverWindow!=null)gameOverWindow.SetActive (status);
 	}
 
 }

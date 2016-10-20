@@ -82,8 +82,8 @@ public class Ball : MonoBehaviour
         else if(c.gameObject.name == "fire")
         {
             f.setActive(false);
-            speed *= 1.5f;
-            ball.velocity = 1.5f * ball.velocity;
+            speed *= 1f;
+            ball.velocity = 1f * ball.velocity;
             return;
         }
         else if (c.gameObject.name == "Multiply")
@@ -94,11 +94,11 @@ public class Ball : MonoBehaviour
             //BlinkAndWait();
 
             // The original ball goes to the left, instantiate a new ball and make it go right
-            ball.velocity = speed * Vector2.left;
-            GameObject newBall = (GameObject)Instantiate(Resources.Load("Prefabs/Ball"), transform.position, Quaternion.identity);
+            //ball.velocity = speed * Vector2.left;
+			GameObject newBall = (GameObject)Instantiate(Resources.Load("Prefabs/Ball"), transform.position+new Vector3(0,0,100), Quaternion.identity);
             numberOfBalls++;
-            newBall.GetComponent<Rigidbody2D>().velocity = speed * Vector2.right;
-
+			newBall.GetComponent<Rigidbody2D>().velocity = speed * new Vector2(-1*ball.velocity.x,-1*ball.velocity.y).normalized;
+			Debug.Log ("HELLO");
             /*
             // The original ball keeps moving, instantiated ball moves at the opposite direction
             GameObject newBall = (GameObject)Instantiate(Resources.Load("Prefabs/Ball"), transform.position, Quaternion.identity);
