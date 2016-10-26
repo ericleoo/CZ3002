@@ -6,8 +6,6 @@ public class GameOverWindow : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		gameOverWindow = GameObject.Find ("GameOverWindow");
-		gameOverWindow.SetActive (false);
 	}
 
 }

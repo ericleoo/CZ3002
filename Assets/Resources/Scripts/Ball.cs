@@ -11,8 +11,8 @@ public class Ball : MonoBehaviour
     public static int numberOfBalls = 1;
     public void Start()
     {
-		GameOverVisibility gameOver = GameObject.Find ("GameOver").GetComponent<GameOverVisibility> ();
-		gameOver.showWindow (false);
+		//GameOverVisibility gameOver = GameObject.Find ("GameOver").GetComponent<GameOverVisibility> ();
+		//gameOver.showWindow (false);
 
 		//While in tutorial, the game does not progress
 		if (PlayerPrefs.GetInt ("tutorial") == 1)

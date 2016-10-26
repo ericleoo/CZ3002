@@ -6,7 +6,8 @@ public class GameOverVisibility : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		gameOverWindow = GameObject.Find ("GameOverWindow");
-	}
+        gameOverWindow.SetActive(false);
+    }
 	
 	// Update is called once per frame
 	/*void Update () {
@@ -25,7 +26,13 @@ public class GameOverVisibility : MonoBehaviour {
 	}*/
 
 	public void showWindow(bool status){
-		if(gameOverWindow!=null)gameOverWindow.SetActive (status);
+        Debug.Log("Called");
+        if (gameOverWindow != null)
+        {
+            gameOverWindow.SetActive(status);
+            Debug.Log("Yup");
+        }
+        else Debug.Log("something's wrong");
 	}
 
 }

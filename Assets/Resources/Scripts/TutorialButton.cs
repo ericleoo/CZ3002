@@ -10,8 +10,8 @@ public class TutorialButton : MonoBehaviour {
 
 	public void OnClick ()
     {
-        if (despawnObject) despawnObject.active = false;
-        if (spawnObject) spawnObject.active = true;
+        if (despawnObject) despawnObject.SetActive(false);
+        if (spawnObject) spawnObject.SetActive(true);
 
         if (despawnObject.name == "Tutorial3")
         {
