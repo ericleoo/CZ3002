@@ -65,6 +65,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\BallTutorial.cs" />
     <Compile Include="Assets\GameOverWindow.cs" />
     <Compile Include="Assets\Resources\Scripts\Ball.cs" />
     <Compile Include="Assets\Resources\Scripts\Ellipse.cs" />

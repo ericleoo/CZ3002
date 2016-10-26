@@ -14,19 +14,14 @@ public class Ball : MonoBehaviour
 		//GameOverVisibility gameOver = GameObject.Find ("GameOver").GetComponent<GameOverVisibility> ();
 		//gameOver.showWindow (false);
 
-		//While in tutorial, the game does not progress
-		if (PlayerPrefs.GetInt ("tutorial") == 1)
-			Time.timeScale = 0;
-		else {
-			// Only the first ball gets the following setup
-			if (numberOfBalls == 1)
-	        {
-				Time.timeScale = 1;
-				Rigidbody2D ball = GetComponent<Rigidbody2D>();
-	            transform.position = new Vector2(100, 100);
-	            ball.velocity = speed * Vector2.right;
-	        }
-		}
+		// Only the first ball gets the following setup
+		if (numberOfBalls == 1)
+	    {
+			Time.timeScale = 1;
+			Rigidbody2D ball = GetComponent<Rigidbody2D>();
+	        transform.position = new Vector2(100, 100);
+	        ball.velocity = speed * Vector2.right;
+	    }
 
     }
 

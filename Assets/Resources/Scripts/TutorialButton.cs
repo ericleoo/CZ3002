@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class TutorialButton : MonoBehaviour {
 
@@ -13,17 +14,9 @@ public class TutorialButton : MonoBehaviour {
         if (despawnObject) despawnObject.SetActive(false);
         if (spawnObject) spawnObject.SetActive(true);
 
-        if (despawnObject.name == "Tutorial3")
+        if (despawnObject.name == "Tutorial3" || despawnObject.name == "GameOverWindow")
         {
-            ballScript = ballObject.GetComponent<Ball>();
-			PlayerPrefs.SetInt ("tutorial", 0);
-            ballScript.Start();
-        }
-
-        if (despawnObject.name == "GameOverWindow")
-        {
-			ballScript = ballObject.GetComponent<Ball>();
-            ballScript.Start();
+            SceneManager.LoadScene(2);
         }
 	}
 	
