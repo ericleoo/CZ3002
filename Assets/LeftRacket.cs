@@ -3,9 +3,20 @@ using System.Collections;
 
 public class LeftRacket : MonoBehaviour
 {
+    float getEllipseX(double angle)
+    {
+        return (float)(77 * System.Math.Cos(angle) + 100);
+    }
+
+
+    float getEllipseY(double angle)
+    {
+        return (float)(41 * System.Math.Sin(angle) + 100);
+    }
+
     void Start()
     {
-        //transform.localScale = new Vector3(1.5f, 3);
+        //transform.position = new Vector2(getEllipseX(System.Math.PI),getEllipseY(System.Math.PI));
     }
 
     float getX(float x)
@@ -19,19 +30,91 @@ public class LeftRacket : MonoBehaviour
         // map pixel -> tranform coordinates
         return y / Screen.height * 100.0f + 50.0f;
     }
+    
+
+    float compute(float x, float y)
+    {
+        return ((x-100) * (x-100)) / (77 * 77) + ((y-100) * (y-100)) / (41 * 41);
+    }
+
+    Vector2 translate(Vector2 p, Vector2 q, float t)
+    {
+        return new Vector2(p.x + t * (q.x-p.x), p.y + t * (q.y - p.y));
+    }
+
+    void updateLocation(float x, float y)
+    {
+        if (x <= Screen.width / 2)
+        {
+            x = getX(x); y = getY(y);
+
+            Debug.Log(x + " " + y);
+            if (0 <= x && x <= 25 && 0 <= y && y <= 70) return;
+
+            Vector2 p = new Vector2(x, y);
+            Vector2 q = new Vector2(100, 100);
+
+            if (compute(x, y) > 1)
+            {
+                float lo = 0, hi = 1;
+
+                // binary search
+                for (int i = 0; i < 50; i++)
+                {
+                    float mid = ((lo + hi)) / 2.0f;
+                    Vector2 cur = translate(p, q, mid);
+                    if (compute(cur.x, cur.y) > 1) lo = mid;
+                    else hi = mid;
+                }
+
+                GetComponent<Rigidbody2D>().position = translate(p, q, (lo + hi) / 2.0f);
+            }
+            else
+            {
+                // binary search
+                float lo = 0, hi = 1;
+                for (int i = 0; i < 50; i++)
+                {
+                    float mid = ((lo + hi)) / 2.0f;
+                    Vector2 cur = translate(q, 1000.0f * (p - q) + q, mid);
+                    if (compute(cur.x, cur.y) < 1) lo = mid;
+                    else hi = mid;
+                }
+
+                GetComponent<Rigidbody2D>().position = translate(q, 1000.0f * (p - q) + q, (lo + hi) / 2.0f);
+            }
+        }
+    }
 
     void FixedUpdate()
     {
 
-        float x, y, dy;
+        float x, y, dx, dy;
         // x and y are pixels
+
+        bool touch = false;
+        bool called = false;
+
+        for (int i = 0; i < Input.touchCount; i++)
+        {
+            touch = true;
+            x = Input.touches[i].position.x;
+            y = Input.touches[i].position.y;
+
+            if (x <= Screen.width / 2)
+            {
+                updateLocation(x, y);
+                called = true;
+            }
+        }
+        
+        if (touch) return;
+
         x = Input.mousePosition.x;
         y = Input.mousePosition.y;
+        dx = Input.GetAxis("Mouse X");
         dy = Input.GetAxis("Mouse Y");
 
-        if (x <= Screen.width / 2) GetComponent<Rigidbody2D>().position = new Vector2(getX(x), getY(y));
-
-        Debug.Log("x is " + x + ", y is " + y);
+        updateLocation(x, y);
     }
-
 }
