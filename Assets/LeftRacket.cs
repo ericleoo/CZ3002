@@ -3,6 +3,10 @@ using System.Collections;
 
 public class LeftRacket : MonoBehaviour
 {
+    public GameObject center;
+    public GameObject otherPaddle;
+    public ControlSettings ctrlSet;
+
     float getEllipseX(double angle)
     {
         return (float)(77 * System.Math.Cos(angle) + 100);
@@ -17,6 +21,7 @@ public class LeftRacket : MonoBehaviour
     void Start()
     {
         //transform.position = new Vector2(getEllipseX(System.Math.PI),getEllipseY(System.Math.PI));
+        Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), otherPaddle.GetComponent<BoxCollider2D>());
     }
 
     float getX(float x)
@@ -67,6 +72,13 @@ public class LeftRacket : MonoBehaviour
                     else hi = mid;
                 }
 
+                Vector3 touchDir = new Vector3(x, y, 0) - center.transform.position;
+                float angle = Mathf.Atan2(touchDir.y, touchDir.x) * Mathf.Rad2Deg;
+                Vector3 paddleDir = GetComponent<Rigidbody2D>().transform.position - center.transform.position;
+                float angle2 = Mathf.Atan2(paddleDir.y, paddleDir.x) * Mathf.Rad2Deg;
+
+                GetComponent<Rigidbody2D>().transform.RotateAround(GetComponent<Rigidbody2D>().position, Vector3.forward, 180 + (angle - angle2));
+
                 GetComponent<Rigidbody2D>().position = translate(p, q, (lo + hi) / 2.0f);
             }
             else
@@ -81,7 +93,15 @@ public class LeftRacket : MonoBehaviour
                     else hi = mid;
                 }
 
+                Vector3 touchDir =  new Vector3(x, y, 0) - center.transform.position;
+                float angle = Mathf.Atan2(touchDir.y, touchDir.x) * Mathf.Rad2Deg;
+                Vector3 paddleDir = GetComponent<Rigidbody2D>().transform.position - center.transform.position;
+                float angle2 = Mathf.Atan2(paddleDir.y, paddleDir.x) * Mathf.Rad2Deg;
+
+                GetComponent<Rigidbody2D>().transform.RotateAround(GetComponent<Rigidbody2D>().position, Vector3.forward, 180 + (angle - angle2));
+
                 GetComponent<Rigidbody2D>().position = translate(q, 1000.0f * (p - q) + q, (lo + hi) / 2.0f);
+
             }
         }
     }
@@ -95,26 +115,28 @@ public class LeftRacket : MonoBehaviour
         bool touch = false;
         bool called = false;
 
-        for (int i = 0; i < Input.touchCount; i++)
-        {
-            touch = true;
-            x = Input.touches[i].position.x;
-            y = Input.touches[i].position.y;
 
-            if (x <= Screen.width / 2)
+            for (int i = 0; i < Input.touchCount; i++)
             {
-                updateLocation(x, y);
-                called = true;
+                touch = true;
+                x = Input.touches[i].position.x;
+                y = Input.touches[i].position.y;
+
+                if (x <= Screen.width / 2)
+                {
+                    updateLocation(x, y);
+                    called = true;
+                }
             }
-        }
+
+            if (touch) return;
+
+            x = Input.mousePosition.x;
+            y = Input.mousePosition.y;
+            dx = Input.GetAxis("Mouse X");
+            dy = Input.GetAxis("Mouse Y");
+
+            updateLocation(x, y);
         
-        if (touch) return;
-
-        x = Input.mousePosition.x;
-        y = Input.mousePosition.y;
-        dx = Input.GetAxis("Mouse X");
-        dy = Input.GetAxis("Mouse Y");
-
-        updateLocation(x, y);
     }
 }

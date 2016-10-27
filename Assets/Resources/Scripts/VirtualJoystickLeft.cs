@@ -11,6 +11,7 @@ public class VirtualJoystickLeft : MonoBehaviour, IDragHandler, IPointerUpHandle
     public GameObject paddle;
     public GameObject center;
     private Vector3 paddleCircPos;      // paddle position if it moves in a circular path
+    private ControlSettings ctrlSet;
 
 
     private void Start()
@@ -71,7 +72,9 @@ public class VirtualJoystickLeft : MonoBehaviour, IDragHandler, IPointerUpHandle
 
     public virtual void OnPointerDown(PointerEventData ped)
     {
-        OnDrag(ped);
+
+            OnDrag(ped);
+        
     }
 
     public virtual void OnPointerUp(PointerEventData ped)
