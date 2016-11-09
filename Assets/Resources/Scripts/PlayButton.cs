@@ -2,6 +2,8 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using GooglePlayGames;
+using UnityEngine.SocialPlatforms;
 
 public class PlayButton : MonoBehaviour {
 
@@ -12,4 +14,10 @@ public class PlayButton : MonoBehaviour {
         else if (CtrlSet.value == 2) SceneManager.LoadScene(3);
     }
     public void tutorialButton() { SceneManager.LoadScene(1); }
+	public void loginButton() {
+		// authenticate user:
+		Social.localUser.Authenticate((bool success) => {
+			// handle success or failure
+		});
+	}
 }

@@ -1,9 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Resources/Scripts/TutorialButton.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/LeftRacket.cs">
     <Files>
-      <File FileName="Assets/Resources/Scripts/Ball.cs" Line="17" Column="54" />
-      <File FileName="Assets/Resources/Scripts/TutorialButton.cs" Line="18" Column="58" />
+      <File FileName="Assets/PlayGamesInitialize.cs" Line="22" Column="1" />
+      <File FileName="Assets/Resources/Scripts/Ball.cs" Line="15" Column="6" />
+      <File FileName="Assets/Resources/Scripts/TutorialButton.cs" Line="5" Column="35" />
+      <File FileName="Assets/Resources/Scripts/PlayButton.cs" Line="6" Column="35" />
+      <File FileName="Assets/Resources/Scripts/Fire.cs" Line="17" Column="3" />
+      <File FileName="Assets/Resources/Scripts/RacketLeft.cs" Line="12" Column="11" />
+      <File FileName="Assets/Resources/Scripts/RacketRight.cs" Line="1" Column="1" />
+      <File FileName="Assets/LeftRacket.cs" Line="23" Column="8" />
+      <File FileName="Assets/RightRacket.cs" Line="33" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

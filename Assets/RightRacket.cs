@@ -30,7 +30,7 @@ public class RightRacket : MonoBehaviour
     void Start()
     {
         //transform.localScale = new Vector3(1.5f, 3);
-        //transform.position = new Vector2(getEllipseX(0), getEllipseY(0));
+        transform.position = new Vector2(getEllipseX(0), getEllipseY(0));
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), otherPaddle.GetComponent<BoxCollider2D>());
     }
 

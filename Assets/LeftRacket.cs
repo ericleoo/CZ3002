@@ -20,7 +20,7 @@ public class LeftRacket : MonoBehaviour
 
     void Start()
     {
-        //transform.position = new Vector2(getEllipseX(System.Math.PI),getEllipseY(System.Math.PI));
+      	transform.position = new Vector2(getEllipseX(System.Math.PI),getEllipseY(System.Math.PI));
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), otherPaddle.GetComponent<BoxCollider2D>());
     }
 

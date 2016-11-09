@@ -2,6 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using GooglePlayGames;
+using UnityEngine.SocialPlatforms;
 
 public class Ball : MonoBehaviour
 {
@@ -77,8 +79,8 @@ public class Ball : MonoBehaviour
         else if(c.gameObject.name == "fire")
         {
             f.setActive(false);
-            speed *= 1f;
-            ball.velocity = 1f * ball.velocity;
+            speed *= 1.5f;
+            ball.velocity = 1.5f * ball.velocity;
             return;
         }
         else if (c.gameObject.name == "Multiply")
@@ -150,6 +152,12 @@ public class Ball : MonoBehaviour
 		// Show the game over window. Pass the scores through PlayerPrefs.
 		ScoreText st = GameObject.Find("Score").GetComponent<ScoreText>();
 		HighScore hs = GameObject.Find("HighScore").GetComponent<HighScore>();
+
+		// Leaderboard
+		// post high score to leaderboard ID "Cfji293fjsie_QA")
+		Social.ReportScore(hs.getHighScore(), "CgkItqGWzpUIEAIQBg", (bool success) => {
+			// handle success or failure
+		});
 
 		gameOver.showWindow (true);
 		speed = initialSpeed;
